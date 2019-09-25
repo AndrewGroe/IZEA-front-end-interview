@@ -11,3 +11,10 @@ body {
     background-color: black;
     color: white;
 }
+.container{
+    display: grid;
+}
+.item{
+    background-color: grey;
+    border-radius: 4px;
+}

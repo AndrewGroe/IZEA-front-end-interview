@@ -1,1 +1,16 @@
-{{outlet}}
+<div class="header">
+    <h1>Posts</h1>
+</div>
+
+{{#each this.model as |post|}}
+<div class="item">
+    <div class="post">
+        <h3 class="title-text">
+            {{post.title}}
+        </h3>
+        <p class="body-text">
+            {{post.body}}
+        </p>
+    </div>
+</div>
+{{/each}}

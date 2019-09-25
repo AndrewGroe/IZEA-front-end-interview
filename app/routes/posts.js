@@ -3,9 +3,10 @@ import { inject as service } from '@ember/service'
 
 export default Route.extend({
     ajax: service(),
-    model () {
+    model() {
         return this.get('ajax').request('/posts?_start=0&_limit=10').then((result) => {
             console.log(result);
+            return result;
         }).catch((err) => {
             console.log(err)
         });
