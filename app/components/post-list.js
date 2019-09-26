@@ -3,9 +3,12 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
     ajax: service(),
-    loading: true,
     posts: null,
+    user: null,
     currentPage: null,
+    selectedPost: null,
+    loading: true,
+    modal: false,
 
     init () {
         this._super(...arguments);
@@ -21,39 +24,47 @@ export default Component.extend({
             console.log(err)
         });
     },
-    getNextPage () {
-        if (this.currentPage < 9) {
-            const start = (this.currentPage + 1) * 10;
-            console.log(start);
-            return this.get('ajax').request('/posts?_start=' + start + '&_limit=10').then((result) => {
-                console.log(result);
-                this.set('posts', result);
-                this.set('currentPage', this.currentPage + 1);
-            }).catch((err) => {
-                console.log(err)
-            });
+    actions: {
+        getNextPage () {
+            if (this.currentPage < 9) {
+                const start = (this.currentPage + 1) * 10;
+                console.log(start);
+                return this.get('ajax').request('/posts?_start=' + start + '&_limit=10').then((result) => {
+                    console.log(result);
+                    this.set('posts', result);
+                    this.set('currentPage', this.currentPage + 1);
+                }).catch((err) => {
+                    console.log(err);
+                });
 
-        }
-    },
-    getPrevPage () {
-        if (this.currentPage > 0) {
-            const start = (this.currentPage - 1) * 10;
-            console.log(start);
-            return this.get('ajax').request('/posts?_start=' + start + '&_limit=10').then((result) => {
+            }
+        },
+        getPrevPage () {
+            if (this.currentPage > 0) {
+                const start = (this.currentPage - 1) * 10;
+                console.log(start);
+                return this.get('ajax').request('/posts?_start=' + start + '&_limit=10').then((result) => {
+                    console.log(result);
+                    this.set('posts', result);
+                    this.set('currentPage', this.currentPage - 1);
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
+        },
+        getUser (index) {
+            this.set('selectedPost', this.posts[index]);
+            return this.get('ajax').request('/users/' + this.selectedPost.userId).then((result) => {
                 console.log(result);
-                this.set('posts', result);
-                this.set('currentPage', this.currentPage - 1);
+                this.set('user', result);
+                this.set('modal', true);
             }).catch((err) => {
-                console.log(err)
+                console.log(err);
             });
+        },
+        toggleModal () {
+            this.set('modal', !this.modal)
         }
-    },
-    getUser (userId) {
-        return this.get('ajax').request('/users/' + userId).then((result) => {
-            console.log(result);
-        }).catch((err) => {
-            console.log(err)
-        });
     }
 
 });

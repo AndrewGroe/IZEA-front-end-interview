@@ -1,26 +1,36 @@
 <div class="header">
     <h1>Posts</h1>
 </div>
-
 <div class="pagination">
-    <button {{action this.getPrevPage}} class="btn-prev-page">prev</button>
+    <button {{action 'getPrevPage'}} class="btn-prev-page">prev</button>
     Page {{this.currentPage}} / 10
-    <button {{action this.getNextPage}} class="btn-next-page">next</button>
+    <button {{action 'getNextPage'}} class="btn-next-page">next</button>
 </div>
 
-{{#each this.posts as |post|}}
+{{!-- Show list of posts provided by Component --}}
+{{#each this.posts as |post index|}}
 <div class="item">
     <div class="post">
         <h3 class="title-text">
             {{post.title}}
         </h3>
-        <p class="body-text">
-            {{post.body}}
-        </p>
-        {{#if this.currentUser}}
-        <h4 class="user">{{this.currentUser.name}}</h4>
-        {{/if}}
-
+        <button {{action 'getUser' index}} class="btn-expand">expand</button>
     </div>
 </div>
 {{/each}}
+
+
+{{!-- Show modal when user selects a post --}}
+{{#if this.modal}}
+<div class="modal">
+    <button {{action 'toggleModal'}} class="btn-close-modal">close</button>
+    <h1 class="post-title">{{this.selectedPost.title}}</h1>
+
+    <h3 class="user">{{this.user.name}}</h3>
+    <h4 class="user-name">{{this.user.userName}}</h4>
+    <h4 class="email">{{this.user.email}}</h4>
+
+    <p class="post-body">{{this.selectedPost.body}}</p>
+</div>
+<div class="modal-overlay"></div>
+{{/if}}
