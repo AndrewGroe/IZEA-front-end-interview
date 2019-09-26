@@ -2,7 +2,7 @@
     <h1>Posts</h1>
 </div>
 
-{{#each this.model as |post|}}
+{{#each this.posts as |post|}}
 <div class="item">
     <div class="post">
         <h3 class="title-text">
@@ -11,6 +11,10 @@
         <p class="body-text">
             {{post.body}}
         </p>
+        {{#if this.currentUser}}
+        <h4 class="user">{{this.currentUser.name}}</h4>
+        {{/if}}
+
     </div>
 </div>
 {{/each}}
