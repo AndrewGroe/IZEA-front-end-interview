@@ -2,6 +2,12 @@
     <h1>Posts</h1>
 </div>
 
+<div class="pagination">
+    <button {{action this.getPrevPage}} class="btn-prev-page">prev</button>
+    Page {{this.currentPage}} / 10
+    <button {{action this.getNextPage}} class="btn-next-page">next</button>
+</div>
+
 {{#each this.posts as |post|}}
 <div class="item">
     <div class="post">

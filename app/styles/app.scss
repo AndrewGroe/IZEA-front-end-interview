@@ -11,10 +11,13 @@ body {
     background-color: black;
     color: white;
 }
-.container{
+.container {
     display: grid;
 }
-.item{
+.item {
     background-color: grey;
     border-radius: 4px;
+}
+.pagination {
+    text-align: center;
 }
