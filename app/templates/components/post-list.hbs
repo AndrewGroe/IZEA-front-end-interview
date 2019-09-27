@@ -1,31 +1,32 @@
+{{! template-lint-disable }}
 <div class="header">
-    <h1>Posts</h1>
+  <h1>Posts</h1>
 </div>
 <div class="pagination">
-    {{!-- Left Arrow --}}
-    <span {{action 'getPrevPage'}} class="btn-prev-page">
-        {{mdi-icon "arrow-left"}}
-    </span>
+  {{!-- Left Arrow --}}
+  <span {{action 'getPrevPage'}} class="btn-prev-page">
+    {{mdi-icon "arrow-left"}}
+  </span>
 
-    <span>Page {{this.fixedPage}} / 10</span>
+  <span>Page {{this.fixedPage}} / 10</span>
 
-    {{!-- Right Arrow --}}
-    <span {{action 'getNextPage'}} class="btn-next-page">
-        {{mdi-icon "arrow-right"}}
-    </span>
+  {{!-- Right Arrow --}}
+  <span {{action 'getNextPage'}} class="btn-next-page">
+    {{mdi-icon "arrow-right"}}
+  </span>
 
 </div>
 
 {{!-- Show list of posts provided by Component --}}
 <section class="container">
-    {{#each this.posts as |post index|}}
-    <article class="post">
-        <header {{action 'getUser' index}} class="post-title">
-            <h3>{{post.title}}</h3>
-        </header>
-        <a {{action 'getUser' index}} class="btn-expand">Read</a>
-    </article>
-    {{/each}}
+  {{#each this.posts as |post index|}}
+  <article class="post">
+    <header {{action 'getUser' index}} class="post-title">
+      <h3>{{post.title}}</h3>
+    </header>
+    <a {{action 'getUser' index}} class="btn-expand">Read</a>
+  </article>
+  {{/each}}
 </section>
 
 
@@ -33,37 +34,37 @@
 {{#if this.modal}}
 <div class="modal">
 
-    {{!-- Close Button --}}
-    <div {{action 'toggleModal'}} class="btn-close-modal">
-        <div class="btn-text">{{mdi-icon "close"}}</div>
+  {{!-- Close Button --}}
+  <div {{action 'toggleModal'}} class="btn-close-modal">
+    <div class="btn-text">{{mdi-icon "close"}}</div>
+  </div>
+
+  <article class="modal-content">
+    <header class="modal-post-title">
+      <h3>{{this.selectedPost.title}}</h3>
+    </header>
+    <div>
+
+      <div class="user-info">
+        <span class="user-name">{{this.user.username}}</span>
+        |
+        <span class="user">{{this.user.name}}</span>
+        |
+        <span class="company">{{this.user.company.name}}</span>
+        <br>
+        <span class="email">{{this.user.email}}</span>
+        |
+        <span class="website">{{this.user.website}}</span>
+        <br>
+        <span class="phone">{{this.user.phone}}</span>
+        |
+        <span class="city">{{this.user.address.city}}</span>
+      </div>
+
     </div>
+    <p class="modal-post-body">{{this.selectedPost.body}}</p>
 
-    <article class="modal-content">
-        <header class="modal-post-title">
-            <h3>{{this.selectedPost.title}}</h3>
-        </header>
-        <div>
-
-            <div class="user-info">
-                <span class="user-name">{{this.user.username}}</span>
-                |
-                <span class="user">{{this.user.name}}</span>
-                |
-                <span class="company">{{this.user.company.name}}</span>
-                <br>
-                <span class="email">{{this.user.email}}</span>
-                |
-                <span class="website">{{this.user.website}}</span>
-                <br>
-                <span class="phone">{{this.user.phone}}</span>
-                |
-                <span class="city">{{this.user.address.city}}</span>
-            </div>
-
-        </div>
-        <p class="modal-post-body">{{this.selectedPost.body}}</p>
-
-    </article>
+  </article>
 </div>
 <div {{action 'toggleModal'}} class="modal-overlay"></div>
 {{/if}}
