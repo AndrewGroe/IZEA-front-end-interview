@@ -1,9 +1,11 @@
-.navbar {
-    background-color: grey;
+@import 'theme';
+
+.nav {
+    background-color: $dark-color;
     border-radius: 4px;
 }
-.navbar-title {
-    color: aquamarine;
-    font-size: 24px;
-    float: left;
+.nav-title {
+    font-size: 100%;
+    color: $secondary-color;
+    padding: 1%;
 }

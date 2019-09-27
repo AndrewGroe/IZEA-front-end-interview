@@ -2,35 +2,64 @@
     <h1>Posts</h1>
 </div>
 <div class="pagination">
-    <button {{action 'getPrevPage'}} class="btn-prev-page">prev</button>
-    Page {{this.currentPage}} / 10
-    <button {{action 'getNextPage'}} class="btn-next-page">next</button>
+    {{!-- Left Arrow --}}
+    <span {{action 'getPrevPage'}} class="btn-prev-page">
+        {{mdi-icon "arrow-left"}}
+    </span>
+
+    <span>Page {{this.fixedPage}} / 10</span>
+
+    {{!-- Right Arrow --}}
+    <span {{action 'getNextPage'}} class="btn-next-page">
+        {{mdi-icon "arrow-right"}}
+    </span>
+
 </div>
 
 {{!-- Show list of posts provided by Component --}}
-{{#each this.posts as |post index|}}
-<div class="item">
-    <div class="post">
-        <h3 class="title-text">
-            {{post.title}}
-        </h3>
-        <button {{action 'getUser' index}} class="btn-expand">expand</button>
-    </div>
-</div>
-{{/each}}
+<section class="container">
+    {{#each this.posts as |post index|}}
+    <article class="post">
+        <header {{action 'getUser' index}} class="post-title">
+            <h3>{{post.title}}</h3>
+        </header>
+        <a {{action 'getUser' index}} class="btn-expand">Read</a>
+    </article>
+    {{/each}}
+</section>
 
 
 {{!-- Show modal when user selects a post --}}
 {{#if this.modal}}
 <div class="modal">
-    <button {{action 'toggleModal'}} class="btn-close-modal">close</button>
-    <h1 class="post-title">{{this.selectedPost.title}}</h1>
 
-    <h3 class="user">{{this.user.name}}</h3>
-    <h4 class="user-name">{{this.user.userName}}</h4>
-    <h4 class="email">{{this.user.email}}</h4>
+    {{!-- Close Button --}}
+    <div {{action 'toggleModal'}} class="btn-close-modal">
+        <div class="btn-text">{{mdi-icon "close"}}</div>
+    </div>
 
-    <p class="post-body">{{this.selectedPost.body}}</p>
+    <article class="modal-content">
+        <header class="post-title">
+            <h3>{{this.selectedPost.title}}</h3>
+        </header>
+        <div>
+
+            <div class="user-info">
+                <span class="user-name">{{this.user.username}}</span>
+                |
+                <span class="user">{{this.user.name}}</span>
+                <br>
+
+                <span class="email">{{this.user.email}}</span>
+            </div>
+
+        </div>
+        <p class="post-body">{{this.selectedPost.body}}</p>
+
+    </article>
 </div>
-<div class="modal-overlay"></div>
+<div {{action 'toggleModal'}} class="modal-overlay"></div>
 {{/if}}
+
+{{!-- Loading Spinner --}}
+<div class="loader"></div>

@@ -1,3 +1,26 @@
+@import 'theme';
+
+
 .pagination {
     text-align: center;
+}
+
+.btn-prev-page {
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    background-color: $primary-color;
+    &:hover {
+        background-color: $secondary-color;
+    }
+}
+
+.btn-next-page {
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    background-color: $primary-color;
+    &:hover {
+        background-color: $secondary-color;
+    }
 }

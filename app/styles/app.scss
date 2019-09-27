@@ -1,16 +1,14 @@
+@import 'grid';
+@import 'nav';
 @import 'modal';
 @import 'pagination';
-@import 'nav';
+@import 'post';
+@import 'theme';
+@import "ember-mdi";
 
 body {
     background-color: black;
+    font: $font-stack;
     color: white;
-}
-.container {
-    display: grid;
-}
-.item {
-    background-color: grey;
-    border-radius: 4px;
 }
 
