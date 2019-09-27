@@ -39,7 +39,7 @@
     </div>
 
     <article class="modal-content">
-        <header class="post-title">
+        <header class="modal-post-title">
             <h3>{{this.selectedPost.title}}</h3>
         </header>
         <div>
@@ -48,13 +48,20 @@
                 <span class="user-name">{{this.user.username}}</span>
                 |
                 <span class="user">{{this.user.name}}</span>
+                |
+                <span class="company">{{this.user.company.name}}</span>
                 <br>
-
                 <span class="email">{{this.user.email}}</span>
+                |
+                <span class="website">{{this.user.website}}</span>
+                <br>
+                <span class="phone">{{this.user.phone}}</span>
+                |
+                <span class="city">{{this.user.address.city}}</span>
             </div>
 
         </div>
-        <p class="post-body">{{this.selectedPost.body}}</p>
+        <p class="modal-post-body">{{this.selectedPost.body}}</p>
 
     </article>
 </div>
