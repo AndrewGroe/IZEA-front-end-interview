@@ -1,4 +1,4 @@
-# izea-front-end-interview
+## IZEA Interview Submission
 
 This project is a small application written in Javascript that leverages the Ember front-end framework. It showcases making an AJAX request to a REST API (JSON Typicode) and displaying the data returned to the user.
 
