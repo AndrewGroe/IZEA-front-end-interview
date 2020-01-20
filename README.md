@@ -1,7 +1,12 @@
 # izea-front-end-interview
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This project is a small application written in Javascript that leverages the Ember front-end framework. It showcases making an AJAX request to a REST API (JSON Typicode) and displaying the data returned to the user.
+
+#### Features include:
+* Pagination
+* SCSS
+* Basic Tests
+* Responsive Design w/o any component libraries
 
 ## Prerequisites
 
